@@ -1,0 +1,15 @@
+# Local agent and browser state
+.agents/
+.playwright-cli/
+
+# Generated previews and QA artifacts
+output/
+
+# Local server and diagnostic logs
+*.log
+
+# Common OS and editor files
+.DS_Store
+Thumbs.db
+*.swp
+*.tmp

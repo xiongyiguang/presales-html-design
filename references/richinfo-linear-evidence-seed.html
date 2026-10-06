@@ -17,7 +17,8 @@
       --warm: #fff2e9;
       --yellow-soft: #fff9e8;
       --paper: #ffffff;
-      --max: 1200px;
+      --stage: #eef1f3;
+      --max: 1280px;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -208,22 +209,7 @@
       scroll-snap-align: start; scroll-snap-stop: always;
     }
     main > section > .wrap { max-height: 100%; overflow: auto; scrollbar-width: thin; }
-    .deck-controls {
-      position: fixed; right: 20px; bottom: 54px; z-index: 60;
-      display: flex; align-items: center; gap: 2px; padding: 4px;
-      color: var(--muted); background: rgba(255,255,255,.86);
-      border: 1px solid rgba(225,228,231,.9); box-shadow: 0 2px 8px rgba(36,40,45,.07);
-      backdrop-filter: blur(8px); opacity: .74; transition: opacity .18s ease;
-    }
-    .deck-controls:hover, .deck-controls:focus-within { opacity: 1; }
-    .deck-controls button {
-      width: 30px; height: 30px; border: 0;
-      color: #747d86; background: transparent; font: 700 16px/1 sans-serif; cursor: pointer;
-    }
-    .deck-controls button:hover { color: var(--orange); background: var(--warm); }
-    .deck-controls button:focus-visible { outline: 2px solid var(--orange); outline-offset: 0; }
-    .deck-controls button:disabled { opacity: .28; cursor: default; }
-    .deck-count { min-width: 52px; text-align: center; color: var(--muted); font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .sr-only { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0,0,0,0) !important; white-space: nowrap !important; border: 0 !important; }
     .deck-progress { position: fixed; left: 0; bottom: 42px; z-index: 55; width: 100%; height: 3px; background: rgba(36,40,45,.12); }
     .deck-progress span { display: block; width: 0; height: 100%; background: var(--orange); transition: width .28s ease; }
     @media (max-height: 780px) and (min-width: 921px) {
@@ -235,30 +221,73 @@
     }
     @media (max-width: 620px) {
       footer { display: none; }
-      .deck-controls { right: 12px; bottom: 12px; }
       .deck-progress { bottom: 0; }
       main > section { padding: 24px 0 !important; align-items: stretch; }
       main > section > .wrap { padding-bottom: 64px; }
     }
     @media (prefers-reduced-motion: reduce) {
       main { scroll-behavior: auto; }
-      .deck-controls, .deck-progress span { transition: none; }
+      .deck-progress span { transition: none; }
     }
     @media print {
       html, body { height: auto; overflow: visible; }
       body { display: block; }
-      .topbar, .deck-controls, .deck-progress { display: none !important; }
+      .topbar, .deck-progress { display: none !important; }
       main { display: block; overflow: visible; }
       main > section { display: block; height: auto; min-height: 100vh; overflow: visible; break-after: page; padding: 48px 0 !important; }
       main > section > .wrap { max-height: none; overflow: visible; }
       footer { position: static; }
+    }
+    /* STANDARD PRESENTATION CHROME: stable header, framed canvas, internal page number, compact footer. */
+    body { background: var(--stage); }
+    .topbar { background: #fff; }
+    .brand { color: var(--ink); font-size: 15px; font-weight: 900; letter-spacing: .02em; }
+    .brand b { color: var(--orange); }
+    nav a { color: var(--ink); font-weight: 750; }
+    nav span { color: #a3aab1; }
+    main > section { padding: 16px 0 !important; background: var(--stage) !important; }
+    main > section[tabindex="-1"]:focus { outline: none; }
+    main > section > .wrap {
+      position: relative; width: min(calc(100% - 48px), var(--max)); height: calc(100% - 32px); max-height: none;
+      overflow: hidden; padding: clamp(32px, 4.5vh, 58px) clamp(30px, 4.5vw, 64px);
+      background: #fff; border: 1px solid #dde2e6; box-shadow: 0 12px 40px rgba(28,38,47,.065);
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    main > .hero > .wrap { display: grid; }
+    main > .alt > .wrap { background: var(--soft); }
+    main > .confirm > .wrap { background: var(--warm); }
+    .page-no {
+      position: absolute; right: 26px; top: 22px; z-index: 4; color: #9aa2aa;
+      font: 700 14px/1 "Bahnschrift", "Segoe UI", sans-serif; letter-spacing: .1em; font-variant-numeric: tabular-nums;
+    }
+    .page-no b { color: var(--orange); }
+    footer { background: var(--ink); border-top: 0; color: #cfd4d8; }
+    footer strong { color: #fff; }
+    .footer-inner { align-items: center; font-size: 14px; }
+    @media (max-height: 780px) and (min-width: 921px) {
+      main > section { padding: 12px 0 !important; }
+      main > section > .wrap { height: calc(100% - 24px); padding: 24px 46px; }
+      .page-no { right: 22px; top: 18px; }
+    }
+    @media (max-width: 620px) {
+      main > section { padding: 10px 0 !important; }
+      main > section > .wrap { width: calc(100% - 20px); height: calc(100% - 20px); padding: 48px 24px 64px; overflow: auto; display: block; }
+      .page-no { right: 18px; top: 17px; }
+      .hero-grid { display: grid !important; }
+    }
+    @media print {
+      body { background: #fff; }
+      main > section { padding: 0 !important; background: #fff !important; }
+      main > section > .wrap { width: 100%; height: 7.5in; max-height: none; border: 0; box-shadow: none; overflow: visible; }
+      .page-no { display: block; }
+      footer { display: none; }
     }
   </style>
 </head>
 <body>
   <header class="topbar">
     <div class="wrap topbar-inner">
-      <div class="brand"><b>彩讯科技</b> RICHINFO</div>
+      <div class="brand">[[BRAND_NAME]] <b>[[BRAND_ENGLISH]]</b></div>
       <nav aria-label="页面导航">
         <a href="#understanding">项目理解</a><span>/</span><a href="#architecture">总体架构</a><span>/</span><a href="#scenarios">核心场景</a><span>/</span><a href="#evidence">行业与案例</a><span>/</span><a href="#roadmap">实施路径</a>
       </nav>
@@ -292,7 +321,7 @@
               <line x1="158" y1="149" x2="210" y2="149" stroke="#ff642a" stroke-width="2" marker-end="url(#arrow)"/>
               <line x1="340" y1="149" x2="392" y2="149" stroke="#ff642a" stroke-width="2" marker-end="url(#arrow)"/>
               <path d="M462 198 C462 292 98 292 98 198" fill="none" stroke="#ff642a" stroke-width="2" marker-end="url(#arrow)"/>
-              <text x="280" y="280" fill="#66707a">[[数据反馈 / 运营迭代 / 闭环复盘]]</text>
+              <text x="280" y="290" fill="#66707a">[[数据反馈 / 运营迭代 / 闭环复盘]]</text>
             </g>
           </svg>
         </div>
@@ -411,7 +440,7 @@
     </section>
   </main>
 
-  <footer><div class="wrap footer-inner"><strong>彩讯科技 RICHINFO</strong><span>[[文档版本]] · [[日期]] · [[保密级别]]</span></div></footer>
+  <footer><div class="wrap footer-inner"><strong>[[BRAND_NAME]] [[BRAND_ENGLISH]]</strong><span>[[CUSTOMER]] · [[PROJECT_NAME]] · [[PROJECT_STAGE]]</span></div></footer>
   <script>
     (() => {
       const deck = document.querySelector('main');
@@ -421,28 +450,30 @@
         if (!slide.id) slide.id = `slide-${String(i + 1).padStart(2, '0')}`;
         slide.setAttribute('data-slide-index', String(i));
         slide.setAttribute('aria-label', slide.getAttribute('aria-label') || `第 ${i + 1} 页，共 ${slides.length} 页`);
+        const frame = slide.querySelector(':scope > .wrap');
+        if (frame) {
+          const pageNo = document.createElement('div');
+          pageNo.className = 'page-no';
+          pageNo.setAttribute('aria-hidden', 'true');
+          pageNo.innerHTML = `<b>${String(i + 1).padStart(2, '0')}</b> / ${String(slides.length).padStart(2, '0')}`;
+          frame.prepend(pageNo);
+        }
       });
-      const controls = document.createElement('div');
-      controls.className = 'deck-controls';
-      controls.setAttribute('aria-label', '演示文稿翻页控制');
-      controls.innerHTML = '<button type="button" data-prev aria-label="上一页">‹</button><span class="deck-count" aria-live="polite"></span><button type="button" data-next aria-label="下一页">›</button>';
+      const status = document.createElement('span');
+      status.className = 'deck-status sr-only';
+      status.setAttribute('aria-live', 'polite');
       const progress = document.createElement('div');
       progress.className = 'deck-progress';
       progress.setAttribute('aria-hidden', 'true');
       progress.innerHTML = '<span></span>';
-      document.body.append(controls, progress);
-      const prev = controls.querySelector('[data-prev]');
-      const next = controls.querySelector('[data-next]');
-      const count = controls.querySelector('.deck-count');
+      document.body.append(status, progress);
       const bar = progress.firstElementChild;
       const reduced = matchMedia('(prefers-reduced-motion: reduce)');
       let index = 0, locked = false, raf = 0, touchY = null, touchTarget = null;
       const clamp = n => Math.max(0, Math.min(slides.length - 1, n));
       function update(n, replaceHash = true) {
         index = clamp(n);
-        prev.disabled = index === 0;
-        next.disabled = index === slides.length - 1;
-        count.textContent = `${String(index + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
+        status.textContent = `第 ${index + 1} 页，共 ${slides.length} 页`;
         bar.style.width = `${((index + 1) / slides.length) * 100}%`;
         if (replaceHash) { try { history.replaceState(null, '', `#${slides[index].id}`); } catch (_) {} }
       }
@@ -463,8 +494,6 @@
         if (!box || box.scrollHeight <= box.clientHeight + 2) return false;
         return dy > 0 ? box.scrollTop + box.clientHeight < box.scrollHeight - 2 : box.scrollTop > 2;
       }
-      prev.addEventListener('click', () => go(index - 1, true));
-      next.addEventListener('click', () => go(index + 1, true));
       deck.addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(activeFromScroll); }, { passive: true });
       deck.addEventListener('wheel', e => {
         if (canScrollInside(e.target, e.deltaY)) return;

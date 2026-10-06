@@ -10,6 +10,14 @@ Use this contract for every default deliverable created by `presales-html-design
 - Keep the document body from scrolling. Put controlled page navigation on the deck container.
 - Keep CSS, interaction JavaScript, diagrams, and required SVG inline. Do not load a slide framework or any external runtime.
 
+## Persistent Presentation Chrome
+
+- Reserve viewport space for a stable header and optional compact footer; keep them outside the scrolling deck so page changes do not move the chrome.
+- Put every desktop presentation page inside one centered frame on a quiet stage. The direct child `<section>` remains the page boundary; its immediate content frame owns the border, shadow, safe-area padding, internal background, and overflow behavior.
+- Generate one internal page-number element per section after the final slide list is known. Use two-digit `current / total` text, expose it as decorative when the accessible section label already announces the same count, and keep the current number visually distinct from the muted separator/total.
+- Do not render a floating previous/next or numeric-page control. The page number inside the frame is the only visible numeric page indicator; keep a visually hidden live status for assistive technology. A thin non-interactive progress line may remain.
+- Keep header brand text, navigation labels, footer metadata, and page-number placement stable across pages. Derive their visible text from the current source and selected brand; do not hard-code seed project labels.
+
 ## Story and Page Planning
 
 - Map each top-level source chapter to one or more pages before writing HTML.
@@ -21,8 +29,9 @@ Use this contract for every default deliverable created by `presales-html-design
 
 ## Required Interaction
 
-- Provide visible previous/next controls and a current-page/total-page indicator.
-- Render the controls as a quiet utility: use a compact neutral surface, small low-contrast text and icons, minimal shadow, and no large dark control block. Reveal stronger contrast or the selected brand color only on hover and keyboard focus.
+- Provide a current-page/total-page indicator inside every page frame. Do not render any floating lower-right page control.
+- Generate every internal page number and the hidden accessible page-status message from the same computed slide list; never maintain totals manually in page markup.
+- Render header navigation as a quiet utility with legible labels and visible keyboard focus. Use the selected brand color for a meaningful active state, not a large dark control block.
 - Support `ArrowLeft`, `ArrowUp`, `PageUp`, `ArrowRight`, `ArrowDown`, `PageDown`, `Home`, `End`, and `Space` navigation.
 - Support one-page-at-a-time mouse-wheel navigation with gesture throttling so one wheel gesture does not skip several pages.
 - Support vertical touch swipe on mobile.
@@ -31,18 +40,18 @@ Use this contract for every default deliverable created by `presales-html-design
 
 ## Viewport and Overflow Rules
 
-- Use `100dvh`/flex sizing so the header, page canvas, controls, and optional footer fit within the viewport.
+- Use `100dvh`/flex sizing so the header, page canvas, progress line, and optional footer fit within the viewport.
 - Compose desktop pages for presentation screens, normally around `16:9`, while allowing the canvas to fill other desktop ratios without distortion.
 - Keep a safe content area on every page. Headings, diagrams, cards, and tables must not collide with controls or browser edges.
 - At desktop verification widths, do not rely on internal page scrolling. Split the page when content does not fit.
 - On narrow mobile screens, a page may use a controlled internal scroll region only when splitting would destroy the information relationship. Preserve the explicit page boundary and do not allow body-level continuous scrolling.
-- Use `scroll-snap` as a resilient baseline, but include explicit controls and JavaScript navigation rather than relying on scroll snapping alone.
+- Use `scroll-snap` as a resilient baseline, together with header navigation and JavaScript keyboard, wheel, touch, and hash navigation; do not rely on scroll snapping alone.
 
 ## Accessibility and Fallbacks
 
 - Use semantic `<section>` pages with stable IDs and an accessible label or heading.
-- Give controls visible keyboard focus and useful `aria-label` text.
-- Expose the page counter through an `aria-live="polite"` region.
+- Give header navigation anchors visible keyboard focus and useful labels.
+- Expose the active page position through one visually hidden `aria-live="polite"` status region. Do not make the repeated page-number elements live regions.
 - Respect `prefers-reduced-motion`; page changes must become immediate rather than animated.
 - Add print rules that expand all pages and apply `break-after: page` so the presentation can be printed or exported without clipped pages.
 
@@ -51,9 +60,10 @@ Use this contract for every default deliverable created by `presales-html-design
 Check the exact final file at minimum at `1440×900`, `1366×768`, and `390×844`:
 
 - only one page is visible at rest;
-- every page is reachable by controls, keyboard, wheel, touch, and direct hash navigation;
+- every page is reachable by keyboard, wheel, touch, navigation anchors, and direct hash navigation;
 - no wheel gesture skips multiple pages;
-- the current-page indicator is accurate;
+- the frame's current-page indicator is accurate and no floating page control appears;
+- every page frame contains the correct two-digit internal page number, and the active position agrees with the hidden accessible status;
 - every navigation target exists;
 - no desktop page clips or internally scrolls;
 - mobile internal scrolling, if any, stays inside the active page;

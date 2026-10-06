@@ -10,7 +10,7 @@ The visual character is:
 
 - white and light-gray foundations;
 - restrained warm brand tints for scope, caution, and next-step areas;
-- pale selected-brand thesis, value, and action bands for emphasis; deep neutral is primarily a text color and may be used only in compact local callouts;
+- pale selected-brand thesis, value, and action bands for emphasis; do not use black, near-black, or charcoal for a large rectangular page, half-page frame, dominant card group, or wide emphasis band; deep neutral is primarily a text color and may be used only in compact local callouts and the footer;
 - strong message-style headings, compact body copy, thin dividers, and limited shadow;
 - varied structures selected by information relationship, not repeated card grids.
 
@@ -49,7 +49,7 @@ Use the primary color for section labels, important headings, flow nodes, and hi
 
 Map the current source first. Use the following as a preferred rhythm, not a fixed chapter list:
 
-1. **Cover page** — plain-text brand, project thesis, project metadata, and a self-contained inline SVG showing the source's central mechanism.
+1. **Cover page** — plain-text brand, project thesis and necessary metadata; select a conclusion, source-grounded mechanism, approved evidence, comparison, or true path opening according to the meeting task.
 2. **Project understanding / customer concerns page** — message heading plus an operating storyline, shift map, or synthesized response lanes.
 3. **Solution thesis / design principles page** — one pale primary-tint thesis block paired with a white principle grid.
 4. **Overall architecture page or page sequence** — light-gray canvas containing the mandatory layered capability architecture; split into overview/detail pages when it cannot remain legible on one page.
@@ -65,11 +65,21 @@ Combine adjacent source chapters on one page when this improves the story, but r
 
 ### Paged Canvas
 
-- Show one page at a time inside the available viewport. Keep the header, page controls, and footer inside the viewport budget.
+- Show one page at a time inside the available viewport. Keep the header, progress line, and optional footer inside the viewport budget.
+- Treat the viewport as persistent presentation chrome around a page canvas:
+  - header: white, approximately `56–68px`, with the plain-text brand at left and compact chapter navigation at right;
+  - stage: quiet cool gray around `#EEF1F3`, giving the page canvas a visible boundary without competing with content;
+  - page canvas: one large centered white/light-gray/pale-brand frame, thin cool-gray border, restrained shadow, square or nearly square corners, and a consistent safe area;
+  - page number: inside the canvas at the upper right, two-digit `current / total` formatting, current number in the selected primary color, separator and total in muted gray, tabular numerals, at least `14px`;
+  - footer: compact deep-neutral band, plain-text brand at left, source-grounded project/document metadata at right, with white and cool-gray text.
+- Keep the header brand treatment typographically direct. For Richinfo without an official logo, render `彩讯股份` or the source-provided Chinese brand name in deep neutral bold text and `Richinfo` in `#FF642A`; do not recolor the Chinese name orange or render `RICHINFO` in all caps unless the user/source requests it.
+- Render navigation labels in deep neutral, bold enough for meeting projection, with low-contrast gray `/` separators. Use the current source's chapter names and valid anchors; do not inherit labels from a reference file.
+- Keep the page frame dimensions and outer margins stable from page to page. Change only the frame's internal background/tint and content composition when the story requires it.
+- On mobile, hide or compact the chapter navigation and footer when needed, reduce the outer stage margin, and retain the framed-page boundary plus internal page counter. Do not let the chrome consume the reading area.
 - Give each page one dominant conclusion. A page is not a container for an entire chapter regardless of density.
 - Prefer approximately three to six proof points, one diagram, one compact matrix, or one tightly related card group per page.
 - Split before shrinking. At desktop sizes, never hide overflow, clip a table, or require internal scrolling to preserve a nominal page count.
-- Keep the current-page indicator quiet but always visible. Previous/next buttons must remain discoverable and keyboard focusable.
+- Use the page number inside the canvas as the only visible numeric page indicator. Keep it quiet but always visible; do not render a floating lower-right page control or previous/next arrows. A thin non-interactive progress line may remain as part of the paged runtime.
 - Let page changes be crisp and restrained. Do not add 3D flips, parallax, or decorative transitions unless the user explicitly requests them.
 
 ## 4. Component Rules
@@ -79,22 +89,23 @@ Combine adjacent source chapters on one page when this improves the story, but r
 - Use plain text for the company name when no official logo file is supplied.
 - Keep navigation compact and place literal `/` or `·` separators between Chinese labels.
 - Verify that every anchor target exists.
+- Keep the Chinese brand name deep neutral and the English Richinfo wordmark in the selected primary color for the default Richinfo direction; use `14–16px`, heavy weight, and restrained letter spacing.
 
 ### Hero
 
-- Use a two-column layout on desktop and stack it on mobile.
-- Make the left side a clear project thesis, not a generic slogan.
-- Use the right side for one source-grounded SVG mechanism, loop, flow, or relationship diagram.
-- Render the diagram region on a restrained light engineering-grid canvas by default. Keep the title strip and outer padding plain white; start the grid below the title divider and confine it to the diagram viewport.
+- Use a two-column thesis-and-mechanism cover when a real governing mechanism benefits from visual explanation; stack it on mobile. Other openings are equally valid: a text-led conclusion, approved evidence, same-dimension comparison, or a true sequence. Select by meeting task and source, not seed appearance.
+- State a clear source-grounded project thesis in the primary reading area.
+- For a mechanism opening, use one source-grounded SVG loop, flow, or relationship diagram. Do not invent nodes or links to occupy an empty column.
+- An engineering grid is optional for a mechanism diagram when it helps the technical reading. Keep title and outer padding plain; if used, confine the grid to the diagram viewport.
 - Build the grid with two `1px` perpendicular cool-gray lines at roughly `6–9%` opacity. Use a cell size around `44–52px` on desktop and `32–40px` on mobile. The grid must remain quieter than diagram nodes, labels, paths, and borders.
-- Put all SVG lines, arrows, nodes, and labels inside a bordered visual container.
+- Keep SVG lines, arrows, nodes, and labels within a coherent visual area. Use a border only when it clarifies grouping; a frame is not required for every opening.
 - Include project stage and scope boundaries when they affect interpretation.
 
 #### Hero Heading Line Control
 
-- Compose the desktop hero heading into two or three intentional semantic lines. Do not rely on uncontrolled browser wrapping for the final result.
+- Compose the desktop hero heading with intentional semantic breaks when needed; a short title can stay on one line. Determine the number of lines from wording, width, and page balance rather than a fixed two- or three-line rule.
 - Avoid orphan lines containing only one to three Chinese characters or punctuation, especially a trailing word or punctuation fragment split from the preceding line.
-- Prefer explicit block line spans after choosing the semantic breaks. Keep those spans `white-space: nowrap` at the verified desktop widths, and relax wrapping only at responsive breakpoints where the two-column hero has already stacked.
+- For chosen semantic breaks, use explicit line spans if needed. Avoid fixed nowrap rules that overflow at the verified widths; allow responsive wrapping while preserving meaning.
 - When a line misses by only one or two characters, first reduce the heading size by approximately `3–8%` while keeping the desktop title within the normal `42–58px` range. If needed, make a small adjustment to the hero column ratio, inter-column gap, or negative letter spacing. Do not rewrite or delete source meaning merely to fit.
 - Verify the real heading at `1366px` and `1440px` desktop widths, plus any user-specified target width. Count the rendered lines visually; do not treat the absence of horizontal overflow as proof that the title wrapping is good.
 
@@ -142,10 +153,11 @@ Combine adjacent source chapters on one page when this improves the story, but r
 - Use an editorial evidence narrative, proof ladder, or pale-tint value strip when value proof is important.
 - Use three or four concise value arguments with evidence-oriented wording; do not default to another equal card grid.
 - Keep named cases in a separate bounded block and preserve disclosure cautions.
+- Preserve exact case names in visible labels, captions, image `alt` text, and other accessibility metadata; do not substitute a descriptive or similar project name.
 
 ### Roadmap
 
-- Use the source's actual number of stages.
+- Use the source's exact stage names and actual number of stages.
 - Each stage should show objective, work or deliverable, and acceptance/attention focus when available.
 - Use restrained colored top rules rather than oversized step numbers.
 - Keep the source's stages on one horizontal or stepped roadmap page when all objectives, deliverables, cooperation, and acceptance gates remain legible; split only for real density.
@@ -163,14 +175,14 @@ Combine adjacent source chapters on one page when this improves the story, but r
 
 Always adapt the template to the current source:
 
-- derive the hero diagram from the project's actual mechanism;
+- derive the opening form from the meeting task and supported thesis, mechanism, evidence, comparison, or sequence;
 - derive page count and order from the source chapters and their content density;
 - preserve the source's number of layers, scenarios, products, cases, and phases;
 - let content density determine whether to use a table, cards, a flow, or a timeline;
-- rewrite headings as message-style conclusions while retaining chapter purpose;
+- rewrite only generic display headings as message-style conclusions; keep any source heading containing a protected project, chapter, case, layer, scenario, phase, product, or organization name unchanged;
 - keep every factual statement traceable to the provided source.
-- inventory the presentation form selected for every page; for decks of six or more pages, normally use at least four distinct relationship-specific forms and avoid repeating one form on more than two consecutive pages.
-- keep white, light gray, and pale brand tints dominant. Deep neutral fills should normally occupy no more than roughly one quarter of a page and should not become a full-page background unless the user explicitly requests a dark direction.
+- inventory each page's relationship, form, and selection reason; repeat a form for comparable evidence or common tasks, and change it when information shape changes;
+- keep white, light gray, and pale brand tints dominant. Do not use a dark half-page frame, dominant card group, or wide rectangular emphasis band merely to create contrast. Deep neutral fills should normally occupy no more than roughly one quarter of a page and should not become a full-page background unless the user explicitly requests a dark direction.
 
 User-supplied visual references may override this layout rhythm. They may not override the selected brand palette, factual constraints, source coverage, accessibility, responsiveness, or self-contained delivery requirements.
 
@@ -181,17 +193,18 @@ Do not:
 - copy the seed's visible sample text;
 - force an eight-section or three-phase structure;
 - use large gradients, glassmorphism, floating blobs, or consumer-style CTA sections by default;
-- use a full-page or dominant near-black background by default;
-- reproduce source tables row-for-row when a storyline, flow, capability map, timeline, evidence narrative, action strip, or grouped confirmation themes communicate the relationship more clearly;
+- use a full-page, half-page, dominant card group, or wide rectangular emphasis area in black, near-black, or charcoal by default;
+- reproduce source tables row-for-row when a storyline, flow, capability map, timeline, evidence narrative, or action strip preserves every distinct source row more clearly; retain the table when row identity, ownership, conditions, acceptance criteria, or confirmation status require exact comparison;
 - repeat the same card grid for every chapter;
 - use excessive rounded corners, shadows, badges, or decorative numbers;
 - place generic AI trend slogans in the industry section;
 - omit a source chapter to preserve the template's preferred page count;
+- merge, rename, or summarize away a named case, source phase, layer, scenario, or confirmation item;
 - force an entire dense chapter onto one page, clip content, or shrink text to avoid a continuation page;
 - expose adjacent pages at rest or rely on free continuous body scrolling;
 - shrink captions or SVG labels below `14px`;
-- omit the default light grid from the hero diagram canvas, extend the grid across the whole hero, or use a dark/high-contrast grid that competes with the diagram;
-- leave a one-to-three-character orphan line in the desktop hero heading, or accept an accidental fourth line when a small type or column adjustment would produce a deliberate two- or three-line composition;
+- add a grid merely to resemble the seed, extend it across the whole hero, or make it compete with the diagram;
+- leave an accidental one-to-three-character orphan line in the desktop hero heading or force semantic text into a preset line count;
 - place a short summary card beside a materially taller table or list when the resulting empty lower column has no semantic purpose;
 - use external fonts, images, scripts, CSS, or CDN dependencies.
 
@@ -201,20 +214,22 @@ Check the exact final HTML at `1440×900`, `1366×768`, and `390×844`:
 
 - no page-level horizontal overflow;
 - exactly one presentation page visible at rest, with no adjacent-page edge showing;
-- visible previous/next controls and an accurate current-page/total-page indicator;
+- stable white header, quiet gray stage, one bordered/shadowed page frame, internal two-digit page number, and compact deep-neutral footer at desktop widths;
+- an accurate current-page/total-page number inside the frame and no floating lower-right page control;
 - every page reachable by keyboard, wheel, touch, navigation anchors, and direct hash;
 - no desktop page clipping or internal scroll; split dense pages instead;
 - body baseline `16px`, every visible label at least `14px`, title at most `60px`;
-- hero diagram contained;
-- hero diagram uses a subtle light grid inside the diagram viewport only, with nodes and labels clearly dominant;
-- desktop hero heading uses two or three intentional lines at `1366px` and `1440px`, with no one-to-three-character orphan line;
+- the selected opening communicates the source thesis; any mechanism diagram is source-grounded and contained;
+- any engineering grid remains subtle, confined to a diagram viewport, and justified by the visual task;
+- desktop hero heading has intentional wrapping at `1366px` and `1440px`, with no accidental orphan fragments or forced line count;
 - side-by-side content blocks have comparable rendered heights; if one block is more than about `20–25%` taller, either justify the asymmetry through a deliberate sticky/supplementary role or convert the layout to stacked blocks;
 - architecture rows readable and complete;
 - navigation anchors valid and separators visible on desktop;
 - pale brand-tint emphasis areas used intentionally, with any deep-neutral element kept compact;
-- no dominant near-black page or major panel appears by default; pale selected-brand tints carry emphasis, with deep neutral limited to compact elements unless explicitly requested;
-- decks of six or more pages use at least four distinct relationship-specific presentation forms, with no single form repeated on more than two consecutive pages;
+- no full-page, half-page, dominant card group, or wide emphasis frame uses black, near-black, or charcoal by default; pale selected-brand tints carry emphasis, with deep neutral limited to compact elements unless explicitly requested;
+- presentation forms and repetition match the actual information relationships; no minimum form count drives gratuitous modules;
 - source chapters visibly covered;
+- protected project, chapter, case, layer, scenario, phase, and confirmation wording matches the source in visible text and accessibility metadata;
 - browser console free of errors and warnings;
 - reduced-motion changes pages without animation, and print output expands one presentation page per printed page;
 - no external runtime resources required.

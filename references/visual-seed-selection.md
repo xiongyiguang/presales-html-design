@@ -30,9 +30,9 @@ Do not select the linear seed merely because the Markdown file is long. Select i
 - Split any page whose content does not fit at the verified desktop sizes. Label continuation pages and keep them adjacent.
 - Preserve the source's actual number of layers, scenarios, products, cases, phases, and confirmation items.
 - Never copy visible sample wording, placeholder text, customer type, business domain, or numerical values from a seed.
-- Do not combine two full deck rhythms. Choose one primary seed and, if justified, borrow no more than one component pattern from the other.
+- Reuse the selected seed's runtime and component grammar while rebuilding its page compositions around the source. Borrow another seed's component only when it fits the relationship and remains consistent with the selected brand and shell.
 - Run a meeting-compression pass before deciding page count. Shared requirement-response conclusions, implementation phases, and next-step decisions should normally be synthesized onto one page when legible.
-- Record one presentation form for each mapped page. For six or more pages, normally use at least four forms and avoid the same form on more than two consecutive pages.
+- Record each page's primary relationship, presentation form, and selection reason. Forms have no minimum count; comparable evidence or repeated tasks may use the same form across consecutive pages.
 - Treat tables as optional exact-comparison tools, not seed defaults. Prefer response lanes, storylines, scenario loops, capability maps, evidence narratives, timelines, action strips, and grouped decision themes.
 - Keep page and major-panel backgrounds white, light gray, or pale selected-brand tints. Do not copy a dominant near-black page from any reference; deep neutral is limited to compact local elements unless the user explicitly requests otherwise.
 - If the user supplies a reference page or explicitly names a seed, follow that direction unless it conflicts with factual, brand, accessibility, or delivery constraints.
